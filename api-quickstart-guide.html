@@ -1,0 +1,412 @@
+<!DOCTYPE html><html><head>
+      <title>api-quickstart-guide</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p,html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  300px/2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="systemrequirementslab-logohttpsdocssystemrequirementslabcomapilogojpg-api-quick-start-guide"><img src="https://docs.systemrequirementslab.com/api/logo.jpg" alt="SystemRequirementsLab Logo"> API Quick Start Guide</h1>
+
+<p>This quick start guide demonstrates how to call the <a href="https://www.systemrequirementslab.com/api/docs">System Requirements Lab API</a> to query for data from a user test on the System Requirements Lab Test App.</p>
+<h2 class="mume-header" id="system-requirements-lab-api">System Requirements Lab API</h2>
+
+<p>The API provides calls that query for user test data. Queries may be performed on date ranges or session and user IDs.</p>
+<h2 class="mume-header" id="test-app">Test App</h2>
+
+<p>The Test App let users run tests of their computer and network against a set of requirements. During the test, information is gathered from the user&apos;s computer and network. At the test end, an analysis of the user&apos;s system against a set of requirements is produced.</p>
+<p><!--?xml version="1.0" encoding="us-ascii" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentstyletype="text/css" height="348px" preserveAspectRatio="none" style="width:331px;height:348px;background:#FFFFFF;" version="1.1" viewBox="0 0 331 348" width="331px" zoomAndPan="magnify"><defs/><g><!--cluster System Requirements Lab Test App--><g id="cluster_System Requirements Lab Test App"><rect fill="none" height="90" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="300" x="7" y="130.5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="247" x="33.5" y="147.0332">System Requirements Lab Test App</text></g><!--entity Start--><g id="elem_Start"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="50" x="23" y="166.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30" x="33" y="191.0332">Start</text></g><!--entity Detection--><g id="elem_Detection"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="80" x="108" y="166.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="118" y="191.0332">Detection</text></g><!--entity Results--><g id="elem_Results"><rect fill="#F1F1F1" height="37.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="67" x="223.5" y="166.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="233.5" y="191.0332">Results</text></g><!--entity Database--><g id="elem_Database"><path d="M120.5,294.5 C120.5,284.5 148,284.5 148,284.5 C148,284.5 175.5,284.5 175.5,294.5 L175.5,321.1094 C175.5,331.1094 148,331.1094 148,331.1094 C148,331.1094 120.5,331.1094 120.5,321.1094 L120.5,294.5 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><path d="M120.5,294.5 C120.5,304.5 148,304.5 148,304.5 C148,304.5 175.5,304.5 175.5,294.5 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="130.5" y="323.0332">Tests</text></g><!--entity User--><g id="elem_User"><ellipse cx="48" cy="14" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M48,22 L48,49 M35,30 L61,30 M48,49 L35,64 M48,49 L61,64 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="33.5" y="80.0332">User</text></g><!--link User to Start--><g id="link_User_Start"><path d="M48,83.85 C48,108.59 48,139.98 48,161.07 " fill="none" id="User-to-Start" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="48,166.2,52,157.2,48,161.2,44,157.2,48,166.2" style="stroke:#181818;stroke-width:1.0;"/></g><!--link Start to Detection--><g id="link_Start_Detection"><path d="M73.39,185.5 C83.15,185.5 92.91,185.5 102.68,185.5 " fill="none" id="Start-to-Detection" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="107.78,185.5,98.78,181.5,102.78,185.5,98.78,189.5,107.78,185.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--link Detection to Results--><g id="link_Detection_Results"><path d="M188.02,185.5 C198.04,185.5 208.06,185.5 218.08,185.5 " fill="none" id="Detection-to-Results" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="223.32,185.5,214.32,181.5,218.32,185.5,214.32,189.5,223.32,185.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--link Start to Database--><g id="link_Start_Database"><path d="M57.76,204.7 C65.79,218.92 77.94,238.84 91,254.5 C98.69,263.72 107.95,272.89 116.74,280.93 " fill="none" id="Start-to-Database" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="120.48,284.3,116.4853,275.2976,116.7706,280.9473,111.121,281.2326,120.48,284.3" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47" x="92" y="250.9951">Session</text></g><!--link Detection to Database--><g id="link_Detection_Database"><path d="M148,204.54 C148,224.32 148,256.29 148,279.26 " fill="none" id="Detection-to-Database" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="148,284.31,152,275.31,148,279.31,144,275.31,148,284.31" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45" x="149" y="250.9951">System</text></g><!--link Results to Database--><g id="link_Results_Database"><path d="M243.66,204.66 C233.1,218.68 217.74,238.36 203,254.5 C194.82,263.46 185.43,272.75 176.75,280.98 " fill="none" id="Results-to-Database" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="173.08,284.44,182.3753,281.1845,176.721,281.0132,176.8923,275.3589,173.08,284.44" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="105" x="218" y="250.9951">Analysis, Session</text></g><!--SRC=[NOyn3eCm34Ltd-ABkLoWGoKanaxGJXM3eLQ52e76Pa1LxruI0GDBvE_yzvJektKZU-xH3FquE75Msjm9l3J6xjK9qPEDQrR1JTGKhCZN3H4tDdZSLJpHZY0fPpNfKSXdQhtqYrLnvJeQa8rZWYy1ZzBOMnMcN6oXsy75L8XEdMb5loLHi2DDBuXrYYUMk3EqJs6zmhGLGtFxmHcbg1wGGo4-dLRByJPptCtQwcaN_G40]--></g></svg></p><h2 class="mume-header" id="data">Data</h2>
+
+<p>A user takes a test on the Test App and data is gathered. This data has three forms: Session, System, and Analysis.</p>
+<dl>
+<dt>Session</dt>
+<dd>Session data comprises test date and time, passed in fields e.g., user ID, user entered information e.g., name and email address, and geo-location data.</dd>
+<dt>System</dt>
+<dd>System data comprises information of a user&apos;s computer and network e.g., CPU, RAM size, and internet speed.</dd>
+<dt>Analysis</dt>
+<dd>Analysis data comprises pass/fail test results of the user&apos;s system and requirements.</dd>
+</dl>
+<h2 class="mume-header" id="example-api-calls">Example API Calls</h2>
+
+<p>These examples demonstrate different calling scenarios.</p>
+<h3 class="mume-header" id="demonstration-values-and-credentials">Demonstration values and credentials</h3>
+
+<p>The example code use demonstration data and security credentials. The demonstration data is public and has a 24 hour lifetime.</p>
+<dl>
+<dt>Referrer ID</dt>
+<dd>1257</dd>
+<dt>Client ID</dt>
+<dd>dXSVY9fRlDZRl69PrOCGd4Oo64rcU5w6</dd>
+<dt>Client Secret</dt>
+<dd>k3VKvrEVDtGPmdwVfVECVkV4ty3GyTNdohFCdgv9q8OX1mtPknh4yD5vIOZlK5j3</dd>
+</dl>
+<h3 class="mume-header" id="access-token">Access Token</h3>
+
+<p>Access tokens are used in token-based authentication to allow an application to access the SystemRequirementsLab API. Once an application has received an access token, it will include that token as a credential when making API requests. To do so, it should transmit the access token to the API as a Bearer credential in an HTTP Authorization header.</p>
+<h4 class="mume-header" id="get-access-token">Get Access Token</h4>
+
+<p>To access the API, an access token must be used.</p>
+<p>To request an access token, make a POST call to <code>https://www.systemrequirementslab.com/api/token</code> with the client id and secret provided by System Requirements Lab.</p>
+<p>Example access token request:</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// Function to fetch an access token.</span>
+<span class="token keyword keyword-function">function</span> <span class="token function">getAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Demonstration client ID and secret.</span>
+  <span class="token keyword keyword-var">var</span> credentials <span class="token operator">=</span> <span class="token punctuation">{</span>
+    clientId<span class="token operator">:</span> <span class="token string">&quot;: &quot;</span>dXSVY9fRlDZRl69PrOCGd4Oo64rcU5w6&quot;<span class="token punctuation">,</span>
+    clientSecret<span class="token operator">:</span> <span class="token string">&quot;k3VKvrEVDtGPmdwVfVECVkV4ty3GyTNdohFCdgv9q8OX1mtPknh4yD5vIOZlK5j3&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword keyword-var">var</span> tokenUrl <span class="token operator">=</span> <span class="token string">&quot;https://www.systemrequirementslab.com/api/token&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword keyword-var">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+      method<span class="token operator">:</span> <span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span>
+      headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">&quot;Content-Type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;application/json&quot;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      body<span class="token operator">:</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">stringify</span><span class="token punctuation">(</span>credentials<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword keyword-var">var</span> response <span class="token operator">=</span> <span class="token keyword control-flow keyword-await">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>tokenUrl<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword control-flow keyword-return">return</span> <span class="token keyword control-flow keyword-await">await</span> response<span class="token punctuation">.</span><span class="token method function property-access">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</pre><p>The access token should be cached for future calls until it expires at which point a new access token may be requested.</p>
+<h3 class="mume-header" id="queries">Queries</h3>
+
+<p>Queries may be performed to get user session, system, and analysis data. Queries are performed using IDs and date ranges.</p>
+<dl>
+<dt>Date Range</dt>
+<dd>A date range is given to restrict the returned records by date.</dd>
+<dt>User ID</dt>
+<dd>User IDs are supplied by the user or in the start page URL by the caller. They are not generated or used by System Requirements Lab and are provided to callers for user tracking purposes.</dd>
+<dt>Session ID</dt>
+<dd>Session IDs (Tracking ID) identify a single test session. A session comprises session, system, and analysis data.</dd>
+</dl>
+<p>Date ranges cannot be combined with session, or user IDs.</p>
+<h3 class="mume-header" id="use-cases">Use Cases</h3>
+
+<h4 class="mume-header" id="system-records-by-user-id">System Records by User ID</h4>
+
+<p>Get all system records for tests performed by a user:</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// Get an access token.</span>
+<span class="token keyword keyword-var">var</span> token <span class="token operator">=</span> <span class="token keyword control-flow keyword-await">await</span> <span class="token function">getAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Defined above.</span>
+
+<span class="token comment">// Fetch the data. Expect just a few records so won&apos;t bother with the cursor.</span>
+<span class="token keyword keyword-var">var</span> response <span class="token operator">=</span> <span class="token keyword control-flow keyword-await">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
+  <span class="token string">&quot;https://www.systemrequirementslab.com/api/v2/session/system/1257?user-id=tom-smith&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    method<span class="token operator">:</span> <span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span>
+    headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token maybe-class-name">Authorization</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Bearer </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>token<span class="token punctuation">.</span><span class="token property-access">access_token</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-var">var</span> records <span class="token operator">=</span> <span class="token keyword control-flow keyword-await">await</span> response<span class="token punctuation">.</span><span class="token method function property-access">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>records<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</pre><h4 class="mume-header" id="analysis-records-by-date-range">Analysis Records by Date Range</h4>
+
+<p>GET all analyses for tests performed during a date range:</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token comment">// Get an access token.</span>
+<span class="token keyword keyword-var">var</span> accessToken <span class="token operator">=</span> <span class="token keyword control-flow keyword-await">await</span> <span class="token function">getAccessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Defined above.</span>
+
+<span class="token keyword keyword-var">var</span> cursor <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span> <span class="token comment">// Initial cursor is empty.</span>
+<span class="token keyword keyword-var">var</span> done <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">// Loop exit.</span>
+
+<span class="token comment">// Many records are possible so will loop over several sets with the cursor.</span>
+<span class="token keyword control-flow keyword-while">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>done<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-var">var</span> response <span class="token operator">=</span> <span class="token keyword control-flow keyword-await">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://www.systemrequirementslab.com/api/v2/session/analysis/1257?start=2023-01-01T00:00:00&amp;end=2023-03-27T00:00:00&amp;cursor=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>cursor<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      method<span class="token operator">:</span> <span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span>
+      headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token maybe-class-name">Authorization</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Bearer </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>accessToken<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token property-access">status</span> <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Valid records were returned.</span>
+    <span class="token keyword keyword-var">var</span> records <span class="token operator">=</span> <span class="token keyword control-flow keyword-await">await</span> response<span class="token punctuation">.</span><span class="token method function property-access">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cursor <span class="token operator">=</span> records<span class="token punctuation">.</span><span class="token property-access">cursor</span><span class="token punctuation">;</span> 
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Got </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>records<span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">.</span><span class="token property-access">length</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> records</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Response status was &apos;404 not found&apos; (no more records) or other error.</span>
+    done <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><hr>
+<p>Copyright (c) Husdawg, LLC<br>
+5/1/2023 v1.0.0</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
